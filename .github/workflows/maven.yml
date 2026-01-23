@@ -3,9 +3,9 @@ name: Build with Maven
 
 on:
   push:
-    branches: [ main ]
+    branches: [ gh-test ]
   pull_request:
-    branches: [ main ]
+    branches: [ gh-test ]
   workflow_dispatch:
 
 jobs:                                                                                                                                              
