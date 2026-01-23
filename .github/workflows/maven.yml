@@ -12,5 +12,5 @@ jobs:
   build:                                                                                                                                           
     uses: wikumChamith/openmrs-contrib-gha-workflows/.github/workflows/build-backend-module.yml@backend-module                                          
     with:                                                                                                                                          
-      java_versions: '8'                                                                                                           
+      java_versions: '[8]'                                                                                                           
       main_java_version: '8'        
