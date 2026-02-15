@@ -2,9 +2,9 @@ name: Build with Maven
 
 on:
   push:
-    branches: [ owasp ]
+    branches: [ owsap ]
   pull_request:
-    branches: [ owasp ]
+    branches: [ owsap ]
   workflow_dispatch:
 
 jobs:
