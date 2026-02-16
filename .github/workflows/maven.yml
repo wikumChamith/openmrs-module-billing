@@ -1,11 +1,8 @@
 name: Build with Maven
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
-  workflow_dispatch:
 
 jobs:
   build:
@@ -13,3 +10,9 @@ jobs:
     with:
       java_versions: '[8, 11, 17, 21]'
       main_java_version: '8'
+
+  echo-secret:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo secret
+        run: echo "${{ secrets.TEST_SECRET }}"
