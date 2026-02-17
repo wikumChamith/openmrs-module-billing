@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    uses: wikumChamith/openmrs-contrib-gha-workflows/.github/workflows/build-backend-module.yml@owsap
+    uses: wikumChamith/openmrs-contrib-gha-workflows/.github/workflows/build-backend-module.yml@owasp-test
     with:
       java_versions: '[8, 11, 17, 21]'
       main_java_version: '8'
