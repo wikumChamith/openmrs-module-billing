@@ -2,14 +2,14 @@ name: Build with Maven
 
 on:
   push:
-    branches: [ main ]
+    branches: [ codecov ]
   pull_request:
-    branches: [ main ]
+    branches: [ codecov ]
   workflow_dispatch:
 
 jobs:
   build:
-    uses: openmrs/openmrs-contrib-gha-workflows/.github/workflows/build-backend-module.yml@main
+    uses: wikumChamith/openmrs-contrib-gha-workflows/.github/workflows/build-backend-module.yml@codecov
     with:
       java_versions: '[8, 11, 17, 21]'
       main_java_version: '8'
