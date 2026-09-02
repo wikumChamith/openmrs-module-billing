@@ -100,12 +100,12 @@ public class BillResourceTest {
 	
 	private RequestContext buildContext(String discountStatusParam) {
 		HttpServletRequest req = mock(HttpServletRequest.class);
-		org.mockito.Mockito.when(req.getParameter("discountStatus")).thenReturn(discountStatusParam);
+		when(req.getParameter("discountStatus")).thenReturn(discountStatusParam);
 		
 		RequestContext context = mock(RequestContext.class);
-		org.mockito.Mockito.when(context.getRequest()).thenReturn(req);
-		org.mockito.Mockito.when(context.getStartIndex()).thenReturn(0);
-		org.mockito.Mockito.when(context.getLimit()).thenReturn(10);
+		when(context.getRequest()).thenReturn(req);
+		when(context.getStartIndex()).thenReturn(0);
+		when(context.getLimit()).thenReturn(10);
 		
 		return context;
 	}
@@ -119,12 +119,12 @@ public class BillResourceTest {
 	
 	private RequestContext buildRefundContext(String refundStatusParam) {
 		HttpServletRequest req = mock(HttpServletRequest.class);
-		org.mockito.Mockito.when(req.getParameter("refundStatus")).thenReturn(refundStatusParam);
+		when(req.getParameter("refundStatus")).thenReturn(refundStatusParam);
 		
 		RequestContext context = mock(RequestContext.class);
-		org.mockito.Mockito.when(context.getRequest()).thenReturn(req);
-		org.mockito.Mockito.when(context.getStartIndex()).thenReturn(0);
-		org.mockito.Mockito.when(context.getLimit()).thenReturn(10);
+		when(context.getRequest()).thenReturn(req);
+		when(context.getStartIndex()).thenReturn(0);
+		when(context.getLimit()).thenReturn(10);
 		
 		return context;
 	}
