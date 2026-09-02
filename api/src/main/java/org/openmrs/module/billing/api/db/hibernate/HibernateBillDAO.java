@@ -173,6 +173,18 @@ public class HibernateBillDAO implements BillDAO {
 			predicates.add(cb.equal(root.get("visit").get("uuid"), billSearch.getVisitUuid()));
 		}
 		
+		if (StringUtils.isNotBlank(billSearch.getLocationUuid())) {
+			predicates.add(cb.equal(root.get("cashPoint").get("location").get("uuid"), billSearch.getLocationUuid()));
+		}
+		
+		if (billSearch.getStartDate() != null) {
+			predicates.add(cb.greaterThanOrEqualTo(root.get("dateCreated"), billSearch.getStartDate()));
+		}
+		
+		if (billSearch.getEndDate() != null) {
+			predicates.add(cb.lessThanOrEqualTo(root.get("dateCreated"), billSearch.getEndDate()));
+		}
+		
 		if (billSearch.getStatuses() != null && !billSearch.getStatuses().isEmpty()) {
 			predicates.add(root.get(FIELD_STATUS).in(billSearch.getStatuses()));
 		}
