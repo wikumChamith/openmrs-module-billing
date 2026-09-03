@@ -277,6 +277,28 @@ public class HibernateBillDAOTest extends BaseModuleContextSensitiveTest {
 	}
 	
 	@Test
+	public void getBills_shouldTreatEndDateAsExactInstantNotWholeDay() {
+		Bill midMorningBill = new Bill();
+		midMorningBill.setCashier(providerService.getProvider(0));
+		midMorningBill.setPatient(patientService.getPatient(1));
+		midMorningBill.setCashPoint(cashPointService.getCashPoint(0));
+		midMorningBill.setReceiptNumber("MIDDAY-" + UUID.randomUUID());
+		midMorningBill.setStatus(BillStatus.PENDING);
+		midMorningBill.setDateCreated(new GregorianCalendar(2012, Calendar.MARCH, 15, 10, 30).getTime());
+		billDAO.saveBill(midMorningBill);
+		
+		List<String> upToMidnight = uuids(
+		    billDAO.getBills(BillSearch.builder().endDate(date(2012, Calendar.MARCH, 15)).build(), null));
+		assertFalse(upToMidnight.contains(midMorningBill.getUuid()),
+		    "endDate of 2012-03-15 00:00 must exclude a bill created at 10:30 that day");
+		
+		List<String> upToNextMidnight = uuids(
+		    billDAO.getBills(BillSearch.builder().endDate(date(2012, Calendar.MARCH, 16)).build(), null));
+		assertTrue(upToNextMidnight.contains(midMorningBill.getUuid()),
+		    "endDate of 2012-03-16 00:00 must include a bill created 2012-03-15 10:30");
+	}
+	
+	@Test
 	public void getBills_shouldFilterByDateRange() {
 		BillSearch search = BillSearch.builder().startDate(date(2012, Calendar.JANUARY, 15))
 		        .endDate(date(2012, Calendar.FEBRUARY, 15)).build();
